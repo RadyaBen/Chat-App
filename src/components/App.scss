@@ -1,0 +1,27 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+#root {
+	background: #C5DDEB;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+.main {
+	max-width: 90%;
+	margin: auto;
+	background-color: #fff;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	min-height: 90vh;
+	width: 100%;
+	display: flex;
+	padding-left: 0;
+}
