@@ -15,7 +15,7 @@ const ChatList = () => {
 					/>
 				</div>
 				<div className='chatlist__search'>
-					<label for='search-input'>
+					<label htmlFor='search-input'>
 						<span className='fa fa-search'></span>
 					</label>
 					<input type='text' id='search-input' placeholder='Search contacts...' />
