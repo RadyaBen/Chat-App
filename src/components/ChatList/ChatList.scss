@@ -5,6 +5,11 @@
 	height: 100%;
 	border-right: 1px solid lightgrey;
 
+	&__box {
+		background-color: #f6f5f8;
+		border-bottom: 1px solid lightgrey;
+	}
+
 	&__avatar {
 		padding: 15px 15px;
 	}
