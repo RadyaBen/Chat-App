@@ -1,3 +1,6 @@
+import { ChatListItems } from '../ChatListItems';
+import { chatUsersData } from '../../data';
+
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 
 import './ChatList.scss';
@@ -23,6 +26,19 @@ const ChatList = () => {
 			</div>
 			<div className='chatlist__header'>
 				<h1>Chats</h1>
+			</div>
+			<div className='chatlist__items'>
+				{chatUsersData.map((chat) => {
+					return (
+						<ChatListItems
+							key={chat.id}
+							name={chat.name}
+							image={chat.image}
+							createdDate={chat.createdDate}
+							message={chat.message}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);
