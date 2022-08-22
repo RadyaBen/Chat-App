@@ -1,3 +1,5 @@
+import './Avatar.scss';
+
 const Avatar = ({ image, isOnline }) => {
 	return (
 		<div className='avatar'>
