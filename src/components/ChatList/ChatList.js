@@ -32,10 +32,11 @@ const ChatList = () => {
 					return (
 						<ChatListItems
 							key={chat.id}
-							name={chat.name}
 							image={chat.image}
+							name={chat.name}
 							createdDate={chat.createdDate}
 							message={chat.message}
+							isOnline={chat.isOnline ? 'active' : ''}
 						/>
 					);
 				})}
