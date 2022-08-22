@@ -21,6 +21,9 @@ const ChatList = () => {
 					<input type='text' id='search-input' placeholder='Search contacts...' />
 				</div>
 			</div>
+			<div className='chatlist__header'>
+				<h1>Chats</h1>
+			</div>
 		</div>
 	);
 };
