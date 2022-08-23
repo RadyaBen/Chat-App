@@ -1,11 +1,18 @@
+import { useState } from 'react';
+
 import { ChatListItems } from '../ChatListItems';
 import { chatUsersData } from '../../data';
-
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 
 import './ChatList.scss';
 
 const ChatList = () => {
+	const [activeChatId, setActiveChatId] = useState(0);
+
+	const highlightActiveChat = (id) => {
+		setActiveChatId(id); // Save the current id, which was received from the child's class, to the state
+	};
+
 	return (
 		<div className='chatlist'>
 			<div className='chatlist__box'>
@@ -28,15 +35,15 @@ const ChatList = () => {
 				<h1>Chats</h1>
 			</div>
 			<div className='chatlist__items'>
-				{chatUsersData.map((chat) => {
+				{chatUsersData.map((chat, index) => {
 					return (
 						<ChatListItems
+							{...chat}
 							key={chat.id}
-							image={chat.image}
-							name={chat.name}
-							createdDate={chat.createdDate}
-							message={chat.message}
+							activeChatId={activeChatId}
 							isOnline={chat.isOnline ? 'active' : ''}
+							animationDelay={index + 1}
+							highlightActiveChat={highlightActiveChat}
 						/>
 					);
 				})}

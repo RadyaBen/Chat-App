@@ -63,4 +63,10 @@
 			color: #38A7CB;
 		}
 	}
+
+	&__items {
+		max-height: calc(100vh / 2);
+		overflow: auto;
+		overflow-x: hidden;
+	}
 }
