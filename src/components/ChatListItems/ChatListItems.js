@@ -6,7 +6,7 @@ import './ChatListItems.scss';
 const ChatListItems = ({ id, ...props }) => {
 
 	const handleChatClick = (id) => {
-		props.highlightActiveChat(id); // Pass the id to the parent class 
+		props.onActiveChatClick(id); // Pass the id to the parent class 
 	};
 
 	return (

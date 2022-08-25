@@ -4,11 +4,11 @@ import { ChatItem } from '../ui/ChatItem';
 import { Avatar } from '../ui/Avatar';
 import { chatItemsData } from '../../data';
 
-const ChatView = () => {
+const ChatView = ({ selectedChatId }) => {
 
 	const [chats, setChats] = useState(chatItemsData);
 
-	const chat = chats.find(chat => chat.id === 1);
+	const chat = chats.find(chat => chat.id === selectedChatId); // By default, the selectedChatId value is set to 1
 	const conversation = chat.conversation.map(item => item);
 
 	return (
@@ -16,11 +16,15 @@ const ChatView = () => {
 			<div className='chat-view__header'>
 				<div className='profile-wrapper'>
 					<div className='profile-wrapper__current-user'>
-						<Avatar
-							image={chat.profileImage}
-							isOnline='active'
-						/>
-						<p>{chat.profileName}</p>
+						{chat && (
+							<>
+								<Avatar
+									image={chat.profileImage}
+									isOnline='active'
+								/>
+								<p>{chat.profileName}</p>
+							</>
+						)}
 					</div>
 				</div>
 			</div>
