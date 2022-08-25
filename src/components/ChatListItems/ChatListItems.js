@@ -1,4 +1,4 @@
-import { Avatar } from '../Avatar';
+import { Avatar } from '../ui/Avatar';
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 
 import './ChatListItems.scss';

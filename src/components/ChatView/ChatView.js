@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-import { Avatar } from '../Avatar';
+import { ChatItem } from '../ui/ChatItem';
+import { Avatar } from '../ui/Avatar';
 import { chatItemsData } from '../../data';
 
 const ChatView = () => {
@@ -26,12 +27,14 @@ const ChatView = () => {
 			<div className='chat-view__content'>
 				<div className='chat-view__items'>
 					{conversation && conversation.map((chatItem) => (
-						<div key={chatItem.key}>
-							<div>{chatItem.image}</div>
-							<div>{chatItem.message}</div>
-							<div>{chatItem.createdDate}</div>
-							<div>{chatItem.time}</div>
-						</div>
+						<ChatItem
+							key={chatItem.key}
+							image={chatItem.image}
+							user={chatItem.type ? chatItem.type : 'me'}
+							createdDate={chatItem.createdDate}
+							time={chatItem.time}
+							message={chatItem.message}
+						/>
 					))}
 				</div>
 			</div>
