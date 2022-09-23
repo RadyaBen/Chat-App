@@ -110,7 +110,7 @@ const ChatView = ({ selectedChatId }) => {
 				key: uuidv4(),
 				image: isBotMessage ? selectedChat.profileImage : 'http://emilcarlsson.se/assets/mikeross.png',
 				type: isBotMessage ? 'other' : '',
-				createdDate: getCurrentDateTime(),
+				createdDateTime: getCurrentDateTime(),
 				message: isBotMessage ? randomJokeMessage : chatMessage,
 			};
 
@@ -156,8 +156,7 @@ const ChatView = ({ selectedChatId }) => {
 										key={chatItem.key}
 										image={chatItem.image}
 										user={chatItem.type ? chatItem.type : 'me'}
-										createdDate={chatItem.createdDate}
-										time={chatItem.time}
+										createdDateTime={chatItem.createdDateTime}
 										message={chatItem.message}
 									/>
 								))

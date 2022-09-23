@@ -2,15 +2,14 @@ import { Avatar } from '../Avatar';
 
 const ChatItem = (props) => {
 
-	const { user, message, createdDate, time, image } = props;
+	const { user, message, createdDateTime, image } = props;
 
 	return (
 		<div className={`chat-view__item ${user ? user : ''}`}>
 			<div className='chat-view__content'>
 				<div className='chat-view__message'>{message}</div>
 				<div className='chat-view__meta'>
-					<span>{createdDate}</span>
-					<span>{time}</span>
+					<span>{createdDateTime}</span>
 				</div>
 			</div>
 			<Avatar isOnline='active' image={image} />
