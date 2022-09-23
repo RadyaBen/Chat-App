@@ -3,6 +3,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ChatItem } from '../ui/ChatItem';
+import { ChatInput } from '../ui/ChatInput';
 import { Avatar } from '../ui/Avatar';
 import { chatItemsData } from '../../data';
 import messageNotification from '../../assets/sounds/message-notification.mp3';
@@ -81,7 +82,7 @@ const ChatView = ({ selectedChatId }) => {
 			if (isDisabled()) {
 				return
 			}
-			
+
 			setIsClicked(true);
 			setIsBotMessage(true);
 			addMessageToChat();
@@ -168,17 +169,16 @@ const ChatView = ({ selectedChatId }) => {
 			</div>
 			<div className='chat-view__footer'>
 				<div className='chat-view__input'>
-					<input
+					<ChatInput
 						type='text'
-						id='chat-message'
-						value={chatMessage}
+						className='chat-view__input'
 						placeholder='Type your message'
+						value={chatMessage}
 						onChange={handleInputChange}
 						onKeyDown={handleKeyDown}
 					/>
 					<button
 						disabled={isDisabled()}
-						htmlFor='chat-message'
 						onClick={() => {
 							addMessageToChat();
 							setIsClicked(true);
