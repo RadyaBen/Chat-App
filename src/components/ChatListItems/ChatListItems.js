@@ -1,4 +1,4 @@
-import { Avatar } from '../Avatar';
+import { Avatar } from '../ui/Avatar';
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 
 import './ChatListItems.scss';
@@ -6,7 +6,7 @@ import './ChatListItems.scss';
 const ChatListItems = ({ id, ...props }) => {
 
 	const handleChatClick = (id) => {
-		props.highlightActiveChat(id); // Pass the id to the parent class 
+		props.onActiveChatClick(id); // Pass the id to the parent class 
 	};
 
 	return (

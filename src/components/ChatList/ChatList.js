@@ -6,11 +6,12 @@ import avatarImage from '../../assets/images/anonymous-avatar.png';
 
 import './ChatList.scss';
 
-const ChatList = () => {
-	const [activeChatId, setActiveChatId] = useState(0);
+const ChatList = ({ onSelectedChatId }) => {
+	const [activeChatId, setActiveChatId] = useState(1);
 
-	const highlightActiveChat = (id) => {
+	const handleActiveChat = (id) => {
 		setActiveChatId(id); // Save the current id, which was received from the child's class, to the state
+		onSelectedChatId(id);
 	};
 
 	return (
@@ -43,7 +44,7 @@ const ChatList = () => {
 							activeChatId={activeChatId}
 							isOnline={chat.isOnline ? 'active' : ''}
 							animationDelay={index + 1}
-							highlightActiveChat={highlightActiveChat}
+							onActiveChatClick={handleActiveChat}
 						/>
 					);
 				})}
