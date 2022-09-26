@@ -6,8 +6,8 @@ const Avatar = ({ image, isOnline }) => {
 			<img
 				className='avatar__image'
 				src={image}
-				alt='Avatar Image'
-				title='Avatar Image'
+				alt='Avatar'
+				title='Avatar'
 			/>
 			<span className={`isOnline ${isOnline}`}></span>
 		</div>
