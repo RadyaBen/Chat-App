@@ -16,14 +16,18 @@ const ChatListItems = ({ id, ...props }) => {
 			onClick={() => handleChatClick(id)}
 		>
 			<Avatar
-				image={props.image ? props.image : avatarImage}
+				image={props.profileImage ? props.profileImage : avatarImage}
 				isOnline={props.isOnline}
 			/>
 			<div className='chatlist__conversation'>
-				<p className='chatlist__name'>{props.name}</p>
-				<p className='chatlist__message'>{props.message.length > 76 ? props.message.substring(0, 76) + '...' : props.message}</p>
+				<p className='chatlist__name'>{props.profileName}</p>
+				<p className='chatlist__message'>
+					{props.conversation.message?.length > 76
+						? props.conversation.message.substring(0, 76) + '...'
+						: props.conversation.message}
+				</p>
 			</div>
-			<div className='chatlist__date'>{props.createdDate}</div>
+			<div className='chatlist__date'>{props.conversation.createdDateTime}</div>
 		</div>
 	);
 };
