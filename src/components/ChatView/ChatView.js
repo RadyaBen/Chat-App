@@ -5,14 +5,14 @@ import { v4 as uuidv4 } from 'uuid';
 import { ChatItem } from '../ui/ChatItem';
 import { ChatInput } from '../ui/ChatInput';
 import { Avatar } from '../ui/Avatar';
-import { chatItemsData } from '../../data';
+import { chatUsersData } from '../../data';
 import messageNotification from '../../assets/sounds/message-notification.mp3';
 
 import './ChatView.scss';
 
 const ChatView = ({ selectedChatId }) => {
 	const [chatItems, setChatItems] = useState(
-		JSON.parse(localStorage.getItem('conversation')) || chatItemsData
+		JSON.parse(localStorage.getItem('conversation')) || chatUsersData
 	);
 	const [chatMessage, setChatMessage] = useState('');
 	const [randomJokeMessage, setRandomJokeMessage] = useState(null);
