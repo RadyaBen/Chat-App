@@ -1,20 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ChatItem } from '../ui/ChatItem';
 import { ChatInput } from '../ui/ChatInput';
 import { Avatar } from '../ui/Avatar';
-import { chatUsersData } from '../../data';
+import { addMessageToChat } from '../../features/chat/chatSlice';
 import messageNotification from '../../assets/sounds/message-notification.mp3';
 
 import './ChatView.scss';
 
 const ChatView = () => {
-	const [chatItems, setChatItems] = useState(
-		JSON.parse(localStorage.getItem('conversation')) || chatUsersData
-	);
 	const [chatMessage, setChatMessage] = useState('');
 	const [randomJokeMessage, setRandomJokeMessage] = useState(null);
 	const [isBotMessage, setIsBotMessage] = useState(false);
@@ -23,9 +20,13 @@ const ChatView = () => {
 	let timeoutRef = useRef(null);
 	let messagesEndRef = useRef(null);
 
-	const { activeChatId } = useSelector((state) => state.chat);
+	// By default, the first chat user is set as active
+	const selectedChat = useSelector((state) => {
+		return state.chat.usersData.find((userItem) => userItem.id === state.chat.activeChatId)
+	});
+	const { usersData } = useSelector((state) => state.chat);
+	const dispatch = useDispatch();
 
-	const selectedChat = chatItems.find(chat => chat.id === activeChatId); // By default, the selectedChatId value is set to 1
 	const audio = new Audio(messageNotification);
 
 	useEffect(() => {
@@ -52,12 +53,10 @@ const ChatView = () => {
 	}, [isBotMessage]);
 
 	useEffect(() => {
-		localStorage.setItem('conversation', JSON.stringify(chatItems));
-
 		if (messagesEndRef.current) {
 			scrollToBottom();
 		}
-	}, [chatItems]);
+	}, [usersData]);
 
 	useEffect(() => {
 		if (isClicked) {
@@ -68,7 +67,7 @@ const ChatView = () => {
 			}
 
 			timeoutRef.current = setTimeout(() => {
-				addMessageToChat(true);
+				handleAddMessage(true);
 				audio.play();
 			}, 5000);
 
@@ -91,7 +90,7 @@ const ChatView = () => {
 
 			setIsClicked(true);
 			setIsBotMessage(true);
-			addMessageToChat();
+			handleAddMessage();
 		}
 	};
 
@@ -110,7 +109,7 @@ const ChatView = () => {
 		return dateObj.toLocaleDateString('en', options);
 	};
 
-	const addMessageToChat = (isRandomAutoresponse) => {
+	const handleAddMessage = (isRandomAutoresponse) => {
 		if (chatMessage || isRandomAutoresponse) {
 			const newMessageItem = {
 				key: uuidv4(),
@@ -120,15 +119,7 @@ const ChatView = () => {
 				message: isBotMessage ? randomJokeMessage : chatMessage,
 			};
 
-			setChatItems((prevChatItem) => {
-				return prevChatItem.map((chatItem) => {
-					return chatItem.id === activeChatId
-						// Add the message to the current conversation
-						? { ...chatItem, conversation: [...chatItem.conversation, newMessageItem] }
-						: chatItem
-				});
-			});
-
+			dispatch(addMessageToChat(newMessageItem));
 			setChatMessage('');
 		}
 	};
@@ -182,7 +173,7 @@ const ChatView = () => {
 					className='chat-view__button'
 					disabled={isDisabled()}
 					onClick={() => {
-						addMessageToChat();
+						handleAddMessage();
 						setIsClicked(true);
 						setIsBotMessage(true);
 					}}
