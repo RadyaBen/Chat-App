@@ -22,12 +22,16 @@ const ChatListItems = ({ id, ...props }) => {
 			<div className='chatlist__conversation'>
 				<p className='chatlist__name'>{props.profileName}</p>
 				<p className='chatlist__message'>
-					{props.conversation.message?.length > 76
-						? props.conversation.message.substring(0, 76) + '...'
-						: props.conversation.message}
+					{
+						props.conversation[props.conversation.length - 1]?.message.length > 76
+							? props.conversation[props.conversation.length - 1]?.message.substring(0, 76) + '...'
+							: props.conversation[props.conversation.length - 1]?.message
+					}
 				</p>
 			</div>
-			<div className='chatlist__date'>{props.conversation.createdDateTime}</div>
+			<div className='chatlist__date'>
+				{props.conversation[props.conversation.length - 1]?.createdDateTime.slice(0, 9)}
+			</div>
 		</div>
 	);
 };
