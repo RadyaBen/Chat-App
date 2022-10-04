@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,7 +11,7 @@ import messageNotification from '../../assets/sounds/message-notification.mp3';
 
 import './ChatView.scss';
 
-const ChatView = ({ selectedChatId }) => {
+const ChatView = () => {
 	const [chatItems, setChatItems] = useState(
 		JSON.parse(localStorage.getItem('conversation')) || chatUsersData
 	);
@@ -18,10 +19,13 @@ const ChatView = ({ selectedChatId }) => {
 	const [randomJokeMessage, setRandomJokeMessage] = useState(null);
 	const [isBotMessage, setIsBotMessage] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
+
 	let timeoutRef = useRef(null);
 	let messagesEndRef = useRef(null);
 
-	const selectedChat = chatItems.find(chat => chat.id === selectedChatId); // By default, the selectedChatId value is set to 1
+	const { activeChatId } = useSelector((state) => state.chat);
+
+	const selectedChat = chatItems.find(chat => chat.id === activeChatId); // By default, the selectedChatId value is set to 1
 	const audio = new Audio(messageNotification);
 
 	useEffect(() => {
@@ -118,7 +122,7 @@ const ChatView = ({ selectedChatId }) => {
 
 			setChatItems((prevChatItem) => {
 				return prevChatItem.map((chatItem) => {
-					return chatItem.id === selectedChatId
+					return chatItem.id === activeChatId
 						// Add the message to the current conversation
 						? { ...chatItem, conversation: [...chatItem.conversation, newMessageItem] }
 						: chatItem

@@ -1,17 +1,21 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ChatListItems } from '../ChatListItems';
-import { chatUsersData } from '../../data';
+import { selectedChatId } from '../../features/chat/chatSlice';
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 
 import './ChatList.scss';
 
-const ChatList = ({ onSelectedChatId }) => {
+const ChatList = () => {
 	const [activeChatId, setActiveChatId] = useState(1);
+
+	const { usersData } = useSelector((state) => state.chat);
+	const dispatch = useDispatch();
 
 	const handleActiveChat = (id) => {
 		setActiveChatId(id); // Save the current id, which was received from the child's class, to the state
-		onSelectedChatId(id);
+		dispatch(selectedChatId(id));
 	};
 
 	return (
@@ -36,7 +40,7 @@ const ChatList = ({ onSelectedChatId }) => {
 				<h1>Chats</h1>
 			</div>
 			<div className='chatlist__items'>
-				{chatUsersData.map((chat, index) => {
+				{usersData && usersData.map((chat, index) => {
 					return (
 						<ChatListItems
 							{...chat}
