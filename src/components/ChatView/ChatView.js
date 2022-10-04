@@ -7,6 +7,7 @@ import { ChatItem } from '../ui/ChatItem';
 import { ChatInput } from '../ui/ChatInput';
 import { Avatar } from '../ui/Avatar';
 import { addMessageToChat } from '../../features/chat/chatSlice';
+import avatarImage from '../../assets/images/anonymous-avatar.png';
 import messageNotification from '../../assets/sounds/message-notification.mp3';
 
 import './ChatView.scss';
@@ -128,34 +129,28 @@ const ChatView = () => {
 		<div className='chat-view'>
 			<div className='chat-view__header'>
 				<div className='chat-view__profile-wrapper'>
-					{selectedChat && (
-						<>
-							<Avatar
-								image={selectedChat.profileImage}
-								isOnline='active'
-							/>
-							<p>{selectedChat.profileName}</p>
-						</>
-					)}
+					<Avatar
+						image={selectedChat?.profileImage ? selectedChat.profileImage : avatarImage}
+						isOnline='active'
+					/>
+					<p>{selectedChat?.profileName}</p>
 				</div>
 			</div>
 			<div className='chat-view__items'>
-				{selectedChat.conversation.length === 0 ? (
+				{selectedChat?.conversation.length === 0 ? (
 					<p className='chat-view__empty-message'>No messages here yet...</p>
 				) : (
 					<>
-						{selectedChat.conversation &&
-							selectedChat.conversation.map((chatItem, index) => (
-								<ChatItem
-									key={chatItem.key}
-									image={chatItem.image}
-									user={chatItem.type ? chatItem.type : 'me'}
-									createdDateTime={chatItem.createdDateTime}
-									message={chatItem.message}
-									animationDelay={index + 2}
-								/>
-							))
-						}
+						{selectedChat?.conversation.map((chatItem, index) => (
+							<ChatItem
+								key={chatItem.key}
+								image={chatItem.image}
+								user={chatItem.type ? chatItem.type : 'me'}
+								createdDateTime={chatItem.createdDateTime}
+								message={chatItem.message}
+								animationDelay={index + 2}
+							/>
+						))}
 					</>
 				)}
 				<div ref={messagesEndRef} />
