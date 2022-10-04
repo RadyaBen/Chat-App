@@ -14,9 +14,15 @@ const chatSlice = createSlice({
 		selectedChatId: (state, action) => {
 			state.activeChatId = action.payload;
 		},
-	}
+		addMessageToChat: (state, action) => {
+			state.usersData = state.usersData.map((userItem) => userItem.id === state.activeChatId
+				? { ...userItem, conversation: [...userItem.conversation, action.payload] }
+				: userItem
+			);
+		},
+	},
 });
 
-export const { selectedChatId } = chatSlice.actions;
+export const { selectedChatId, addMessageToChat } = chatSlice.actions;
 
 export default chatSlice.reducer;
