@@ -105,7 +105,12 @@ const ChatView = () => {
 
 	const getCurrentDateTime = () => {
 		const dateObj = new Date();
-		const options = { hour: 'numeric', hour12: true, minute: 'numeric' };
+		const options = {
+			hour: 'numeric',
+			hour12: true,
+			minute: 'numeric',
+			second: 'numeric',
+		};
 
 		return dateObj.toLocaleDateString('en', options);
 	};

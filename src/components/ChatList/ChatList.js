@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ChatListItems } from '../ChatListItems';
@@ -17,6 +17,17 @@ const ChatList = () => {
 		setActiveChatId(id); // Save the current id, which was received from the child's class, to the state
 		dispatch(selectedChatId(id));
 	};
+
+	let sortedUsersData = useMemo(() => {
+		return Object.values([...usersData]).sort((a, b) => {
+			// Convert the date to timestamps in milliseconds
+			let latestCreatedAtA = Date.parse(new Date(a.conversation.at(-1)?.createdDateTime));
+			let latestCreatedAtB = Date.parse(new Date(b.conversation.at(-1)?.createdDateTime));
+
+			// Check for the NaN values first and sort them to the bottom. Then sort by timestamps in milliseconds in descending order
+			return !isNaN(latestCreatedAtB) - !isNaN(latestCreatedAtA) || latestCreatedAtB - latestCreatedAtA
+		});
+	}, [usersData]);
 
 	return (
 		<div className='chatlist'>
@@ -40,7 +51,7 @@ const ChatList = () => {
 				<h1>Chats</h1>
 			</div>
 			<div className='chatlist__items'>
-				{usersData && usersData.map((chat, index) => {
+				{sortedUsersData?.map((chat, index) => {
 					return (
 						<ChatListItems
 							{...chat}
