@@ -1,4 +1,5 @@
 import { Avatar } from '../ui/Avatar';
+
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 
 import './ChatListItems.scss';
@@ -36,4 +37,4 @@ const ChatListItems = ({ id, ...props }) => {
 	);
 };
 
-export { ChatListItems }; 
+export { ChatListItems };
