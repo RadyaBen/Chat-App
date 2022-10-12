@@ -14,7 +14,7 @@ const ChatItem = (props) => {
 			<div className='chat-view__content'>
 				<div className='chat-view__message'>{message}</div>
 				<div className='chat-view__meta'>
-					<span>{createdDateTime}</span>
+					<span>{createdDateTime.replace(/\:\d+ /, ' ')}</span>
 				</div>
 			</div>
 			<Avatar isOnline='active' image={image} />
