@@ -31,7 +31,8 @@ const ChatListItems = ({ id, ...props }) => {
 				</p>
 			</div>
 			<div className='chatlist__date'>
-				{props.conversation[props.conversation.length - 1]?.createdDateTime.slice(0, 9)}
+				{/* eslint-disable-next-line */}
+				{props.conversation[props.conversation.length - 1]?.createdDateTime.slice(0, 10).replace(/[\,]/g, '')}
 			</div>
 		</div>
 	);
