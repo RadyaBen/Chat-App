@@ -6,7 +6,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { ChatItem } from '../ui/ChatItem';
 import { ChatInput } from '../ui/ChatInput';
 import { Avatar } from '../ui/Avatar';
+
 import { addMessageToChat } from '../../features/chat/chatSlice';
+
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 import messageNotification from '../../assets/sounds/message-notification.mp3';
 
@@ -18,12 +20,12 @@ const ChatView = () => {
 	const [isBotMessage, setIsBotMessage] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
 
-	let timeoutRef = useRef(null);
-	let messagesEndRef = useRef(null);
+	const timeoutRef = useRef(null);
+	const messagesEndRef = useRef(null);
 
 	// By default, the first chat user is set as active
 	const selectedChat = useSelector((state) => {
-		return state.chat.usersData.find((userItem) => userItem.id === state.chat.activeChatId)
+		return state.chat.usersData.find((userItem) => userItem.id === state.chat.activeChatId);
 	});
 	const { usersData } = useSelector((state) => state.chat);
 	const dispatch = useDispatch();
@@ -39,8 +41,10 @@ const ChatView = () => {
 				setRandomJokeMessage(data.value);
 			} catch (error) {
 				if (axios.isAxiosError(error)) {
+					// eslint-disable-next-line
 					console.log('Axios Error with Message: ' + error.message);
 				} else {
+					// eslint-disable-next-line
 					console.log(error);
 				}
 			}
@@ -86,7 +90,7 @@ const ChatView = () => {
 		if (e.keyCode === 13) {
 
 			if (isDisabled()) {
-				return
+				return;
 			}
 
 			setIsClicked(true);
