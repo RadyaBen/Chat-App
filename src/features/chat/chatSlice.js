@@ -16,7 +16,7 @@ const chatSlice = createSlice({
 			state.activeChatId = action.payload;
 		},
 		addMessageToChat: (state, action) => {
-			const newUsersData = state.usersData.map((userItem) => userItem.id === state.activeChatId
+			const newUsersData = state.usersData.map((userItem) => userItem.id === action.payload.chatId
 				? { ...userItem, conversation: [...userItem.conversation, action.payload] }
 				: userItem
 			);
