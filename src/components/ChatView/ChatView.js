@@ -27,7 +27,7 @@ const ChatView = () => {
 	const selectedChat = useSelector((state) => {
 		return state.chat.usersData.find((userItem) => userItem.id === state.chat.activeChatId);
 	});
-	const { usersData } = useSelector((state) => state.chat);
+	const { usersData, activeChatId } = useSelector((state) => state.chat);
 	const dispatch = useDispatch();
 
 	const audio = new Audio(messageNotification);
@@ -72,7 +72,7 @@ const ChatView = () => {
 			}
 
 			timeoutRef.current = setTimeout(() => {
-				handleAddMessage(true);
+				handleAddMessage(true, activeChatId);
 				audio.play();
 			}, 5000);
 
@@ -119,10 +119,11 @@ const ChatView = () => {
 		return dateObj.toLocaleDateString('en', options);
 	};
 
-	const handleAddMessage = (isRandomAutoresponse) => {
+	const handleAddMessage = (isRandomAutoresponse, selectedChatId) => {
 		if (chatMessage || isRandomAutoresponse) {
 			const newMessageItem = {
 				key: uuidv4(),
+				chatId: selectedChatId ? selectedChatId : activeChatId,
 				image: isBotMessage ? selectedChat.profileImage : 'http://emilcarlsson.se/assets/mikeross.png',
 				type: isBotMessage ? 'other' : '',
 				createdDateTime: getCurrentDateTime(),
