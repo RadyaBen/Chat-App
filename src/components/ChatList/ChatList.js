@@ -1,18 +1,18 @@
 import { useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ChatListBox } from '../ChatListBox';
 import { ChatListItems } from '../ChatListItems';
+import { SearchMessage } from '../ui/SearchMessage';
 
 import { selectedChatId } from '../../features/chat/chatSlice';
-
-import avatarImage from '../../assets/images/anonymous-avatar.png';
 
 import './ChatList.scss';
 
 const ChatList = () => {
 	const [activeChatId, setActiveChatId] = useState(1);
 
-	const { usersData } = useSelector((state) => state.chat);
+	const { filteredUsersData } = useSelector((state) => state.chat);
 	const dispatch = useDispatch();
 
 	const handleActiveChat = (id) => {
@@ -21,7 +21,7 @@ const ChatList = () => {
 	};
 
 	const sortedUsersData = useMemo(() => {
-		return Object.values([...usersData]).sort((a, b) => {
+		return Object.values([...filteredUsersData]).sort((a, b) => {
 			// Convert the date to timestamps in milliseconds
 			const latestCreatedAtA = Date.parse(new Date(a.conversation.at(-1)?.createdDateTime));
 			const latestCreatedAtB = Date.parse(new Date(b.conversation.at(-1)?.createdDateTime));
@@ -30,32 +30,17 @@ const ChatList = () => {
 			// Then sort by timestamps in milliseconds in descending order
 			return !isNaN(latestCreatedAtB) - !isNaN(latestCreatedAtA) || latestCreatedAtB - latestCreatedAtA;
 		});
-	}, [usersData]);
+	}, [filteredUsersData]);
 
 	return (
 		<div className='chatlist'>
-			<div className='chatlist__box'>
-				<div className='chatlist__avatar'>
-					<img
-						className='chatlist__image'
-						src={avatarImage}
-						alt='Anonymous Avatar'
-						title='Anonymous Avatar'
-					/>
-				</div>
-				<div className='chatlist__search'>
-					<label htmlFor='search-input'>
-						<span className='fa fa-search'></span>
-					</label>
-					<input type='text' id='search-input' placeholder='Search contacts...' />
-				</div>
-			</div>
+			<ChatListBox />
 			<div className='chatlist__header'>
 				<h1>Chats</h1>
 			</div>
 			<div className='chatlist__items'>
-				{sortedUsersData?.map((chat, index) => {
-					return (
+				{sortedUsersData.length > 0 ? (
+					sortedUsersData?.map((chat, index) => (
 						<ChatListItems
 							{...chat}
 							key={chat.id}
@@ -64,8 +49,10 @@ const ChatList = () => {
 							animationDelay={index + 1}
 							onActiveChatClick={handleActiveChat}
 						/>
-					);
-				})}
+					))
+				) : (
+					<SearchMessage />
+				)}
 			</div>
 		</div>
 	);
