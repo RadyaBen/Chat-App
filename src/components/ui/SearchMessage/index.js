@@ -1,0 +1,1 @@
+export { SearchMessage } from './SearchMessage';

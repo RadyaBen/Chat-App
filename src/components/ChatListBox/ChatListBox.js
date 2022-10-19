@@ -1,8 +1,26 @@
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { searchUsersData } from '../../features/chat/chatSlice';
+
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 
 import './ChatListBox.scss';
 
 const ChatListBox = () => {
+	const [searchQuery, setSearchQuery] = useState('');
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(searchUsersData(searchQuery));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [searchQuery]);
+
+	const handleSearchQuery = (e) => {
+		setSearchQuery(e.target.value);
+	};
+
 	return (
 		<div className='chatlist__box'>
 			<div className='chatlist__avatar'>
@@ -17,7 +35,13 @@ const ChatListBox = () => {
 				<label htmlFor='search-input'>
 					<span className='fa fa-search'></span>
 				</label>
-				<input type='text' id='search-input' placeholder='Search contacts...' />
+				<input
+					type='text'
+					id='search-input'
+					placeholder='Search contacts...'
+					value={searchQuery}
+					onChange={handleSearchQuery}
+				/>
 			</div>
 		</div>
 	);

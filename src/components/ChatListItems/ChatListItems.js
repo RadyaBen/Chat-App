@@ -10,6 +10,10 @@ const ChatListItems = ({ id, ...props }) => {
 		props.onActiveChatClick(id); // Pass the id to the parent class 
 	};
 
+	const createMarkup = (html) => {
+		return { __html: html };
+	};
+
 	return (
 		<div
 			style={{ animationDelay: `0.${props.animationDelay}s` }}
@@ -21,7 +25,11 @@ const ChatListItems = ({ id, ...props }) => {
 				isOnline={props.isOnline}
 			/>
 			<div className='chatlist__conversation'>
-				<p className='chatlist__name'>{props.profileName}</p>
+				<p
+					className='chatlist__name'
+					dangerouslySetInnerHTML={createMarkup(props.profileName)}
+				>
+				</p>
 				<p className='chatlist__message'>
 					{
 						props.conversation[props.conversation.length - 1]?.message.length > 76
