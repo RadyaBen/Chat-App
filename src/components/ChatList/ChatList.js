@@ -10,13 +10,13 @@ import { selectedChatId } from '../../features/chat/chatSlice';
 import './ChatList.scss';
 
 const ChatList = () => {
-	const [activeChatId, setActiveChatId] = useState(1);
-
-	const { filteredUsersData } = useSelector((state) => state.chat);
+	const { filteredUsersData, activeChatId } = useSelector((state) => state.chat);
 	const dispatch = useDispatch();
 
+	const [currentActiveChatId, setCurrentActiveChatId] = useState(activeChatId);
+
 	const handleActiveChat = (id) => {
-		setActiveChatId(id); // Save the current id, which was received from the child's class, to the state
+		setCurrentActiveChatId(id); // Save the current id, which was received from the child's class, to the state
 		dispatch(selectedChatId(id));
 	};
 
@@ -44,7 +44,7 @@ const ChatList = () => {
 						<ChatListItems
 							{...chat}
 							key={chat.id}
-							activeChatId={activeChatId}
+							activeChatId={currentActiveChatId}
 							isOnline={chat.isOnline ? 'active' : ''}
 							animationDelay={index + 1}
 							onActiveChatClick={handleActiveChat}
