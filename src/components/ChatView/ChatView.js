@@ -148,21 +148,19 @@ const ChatView = () => {
 				</div>
 			</div>
 			<div className='chat-view__items'>
-				{selectedChat?.conversation.length === 0 ? (
-					<ChatEmptyMessage />
+				{selectedChat?.conversation?.length > 0 ? (
+					selectedChat?.conversation?.map((chatItem, index) => (
+						<ChatItem
+							key={chatItem.key}
+							image={chatItem.image}
+							user={chatItem.type ? chatItem.type : 'me'}
+							createdDateTime={chatItem.createdDateTime}
+							message={chatItem.message}
+							animationDelay={index + 2}
+						/>
+					))
 				) : (
-					<>
-						{selectedChat?.conversation.map((chatItem, index) => (
-							<ChatItem
-								key={chatItem.key}
-								image={chatItem.image}
-								user={chatItem.type ? chatItem.type : 'me'}
-								createdDateTime={chatItem.createdDateTime}
-								message={chatItem.message}
-								animationDelay={index + 2}
-							/>
-						))}
-					</>
+					<ChatEmptyMessage />
 				)}
 				<div ref={messagesEndRef} />
 			</div>
