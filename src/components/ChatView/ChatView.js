@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
+import { Avatar } from '../ui/Avatar';
+import { ChatEmptyMessage } from '../ui/ChatEmptyMessage';
 import { ChatItem } from '../ui/ChatItem';
 import { ChatInput } from '../ui/ChatInput';
-import { Avatar } from '../ui/Avatar';
 
 import { addMessageToChat } from '../../features/chat/chatSlice';
 
@@ -148,7 +149,7 @@ const ChatView = () => {
 			</div>
 			<div className='chat-view__items'>
 				{selectedChat?.conversation.length === 0 ? (
-					<p className='chat-view__empty-message'>No messages here yet...</p>
+					<ChatEmptyMessage />
 				) : (
 					<>
 						{selectedChat?.conversation.map((chatItem, index) => (
