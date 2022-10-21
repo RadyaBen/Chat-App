@@ -1,1 +1,1 @@
-export * from './chatUsersData';
+export { chatUsersData } from './chatUsersData';
