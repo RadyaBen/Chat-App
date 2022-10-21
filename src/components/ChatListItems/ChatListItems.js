@@ -32,15 +32,15 @@ const ChatListItems = ({ id, ...props }) => {
 				</p>
 				<p className='chatlist__message'>
 					{
-						props.conversation[props.conversation.length - 1]?.message.length > 76
-							? props.conversation[props.conversation.length - 1]?.message.substring(0, 76) + '...'
-							: props.conversation[props.conversation.length - 1]?.message
+						props.conversation.at(-1)?.message.length > 76
+							? props.conversation.at(-1)?.message.substring(0, 76) + '...'
+							: props.conversation.at(-1)?.message
 					}
 				</p>
 			</div>
 			<div className='chatlist__date'>
 				{/* eslint-disable-next-line */}
-				{props.conversation[props.conversation.length - 1]?.createdDateTime.slice(0, 10).replace(/[\,]/g, '')}
+				{props.conversation.at(-1)?.createdDateTime.slice(0, 10).replace(/[\,]/g, '')}
 			</div>
 		</div>
 	);
