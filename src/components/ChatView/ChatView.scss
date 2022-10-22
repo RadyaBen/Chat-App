@@ -22,8 +22,8 @@
 	}
 
 	&__items {
-		min-height: calc(100vh - 200px);
-		max-height: calc(100vh - 200px);
+		min-height: calc(100% - 186px);
+		max-height: calc(100% - 186px);
 		position: relative;
 		overflow: auto;
 		overflow-x: hidden;

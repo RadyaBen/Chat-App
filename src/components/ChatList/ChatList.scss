@@ -16,7 +16,7 @@
 	}
 
 	&__items {
-		max-height: calc(100vh / 1.55);
+		height: calc(100% - 200px);
 		overflow: auto;
 		overflow-x: hidden;
 	}
