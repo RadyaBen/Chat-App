@@ -129,6 +129,20 @@ const chatUsersData = [
 		isOnline: false,
 		conversation: [],
 	},
+	{
+		id: 6,
+		profileImage: 'http://emilcarlsson.se/assets/haroldgunderson.png',
+		profileName: 'Harold Gunderson',
+		isOnline: true,
+		conversation: [],
+	},
+	{
+		id: 7,
+		profileImage: 'http://emilcarlsson.se/assets/jonathansidwell.png',
+		profileName: 'Jonathan Sidwell',
+		isOnline: true,
+		conversation: [],
+	},
 ];
 
 export { chatUsersData };
