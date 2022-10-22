@@ -1,27 +1,33 @@
 * {
+	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
 }
 
 html,
 body {
 	height: 100%;
+	width: 100%;
 }
 
 #root {
-	background: #C5DDEB;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100%;
+	min-height: 100vh;
+	background: #C5DDEB;
+	letter-spacing: 0.1px;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .main {
+	display: flex;
+	width: 95%;
+	min-width: 360px;
 	max-width: 90%;
-	margin: auto;
+	height: 92vh;
+	min-height: 500px;
+	max-height: 720px;
 	background-color: #fff;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-	min-height: 90vh;
-	width: 100%;
-	display: flex;
-	padding-left: 0;
 }
