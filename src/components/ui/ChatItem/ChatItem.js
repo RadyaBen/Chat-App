@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Avatar } from '../Avatar';
 
 import './ChatItem.scss';
@@ -21,6 +23,13 @@ const ChatItem = (props) => {
 			<Avatar isOnline='active' image={image} />
 		</div>
 	);
+};
+
+ChatItem.propTypes = {
+	user: PropTypes.string.isRequired,
+	message: PropTypes.string.isRequired,
+	createdDateTime: PropTypes.string.isRequired,
+	image: PropTypes.string.isRequired,
 };
 
 export { ChatItem };
