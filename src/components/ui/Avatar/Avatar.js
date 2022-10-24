@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import './Avatar.scss';
 
 const Avatar = ({ image, isOnline }) => {
@@ -12,6 +14,11 @@ const Avatar = ({ image, isOnline }) => {
 			<span className={`isOnline ${isOnline}`}></span>
 		</div>
 	);
+};
+
+Avatar.propTypes = {
+	image: PropTypes.string.isRequired,
+	isOnline: PropTypes.string.isRequired,
 };
 
 export { Avatar };

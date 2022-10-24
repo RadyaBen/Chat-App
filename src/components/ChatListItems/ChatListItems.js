@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Avatar } from '../ui/Avatar';
 
 import avatarImage from '../../assets/images/anonymous-avatar.png';
@@ -55,6 +57,17 @@ const ChatListItems = (props) => {
 			</div>
 		</div>
 	);
+};
+
+ChatListItems.propTypes = {
+	id: PropTypes.number.isRequired,
+	onActiveChatClick: PropTypes.func.isRequired,
+	animationDelay: PropTypes.number.isRequired,
+	activeChatId: PropTypes.number.isRequired,
+	profileImage: PropTypes.string.isRequired,
+	profileName: PropTypes.string.isRequired,
+	isOnline: PropTypes.string.isRequired,
+	conversation: PropTypes.array.isRequired,
 };
 
 export { ChatListItems };
