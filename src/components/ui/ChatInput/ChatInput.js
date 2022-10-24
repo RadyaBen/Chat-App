@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const ChatInput = (props) => {
 
 	const { type, className, placeholder, value, onChange, onKeyDown } = props;
@@ -12,6 +14,15 @@ const ChatInput = (props) => {
 			onKeyDown={onKeyDown}
 		/>
 	);
+};
+
+ChatInput.propTypes = {
+	type: PropTypes.string,
+	className: PropTypes.string.isRequired,
+	placeholder: PropTypes.string.isRequired,
+	value: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired,
+	onKeyDown: PropTypes.func.isRequired,
 };
 
 export { ChatInput };
