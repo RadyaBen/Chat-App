@@ -4,6 +4,8 @@ import { Avatar } from '../ui/Avatar';
 
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 
+import { truncateAfterWord } from '../../utils';
+
 import './ChatListItems.scss';
 
 const ChatListItems = (props) => {
@@ -45,9 +47,7 @@ const ChatListItems = (props) => {
 				</p>
 				<div className='chatlist__message'>
 					{conversation.length > 0 ? (
-						conversation.at(-1)?.message.length > 76
-							? conversation.at(-1)?.message.substring(0, 76) + '...'
-							: conversation.at(-1)?.message
+						truncateAfterWord(conversation.at(-1)?.message, 76)
 					) : (
 						<p>No messages</p>
 					)}
