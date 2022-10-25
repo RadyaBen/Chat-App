@@ -43,13 +43,15 @@ const ChatListItems = (props) => {
 					dangerouslySetInnerHTML={createMarkup(profileName)}
 				>
 				</p>
-				<p className='chatlist__message'>
-					{
+				<div className='chatlist__message'>
+					{conversation.length > 0 ? (
 						conversation.at(-1)?.message.length > 76
 							? conversation.at(-1)?.message.substring(0, 76) + '...'
 							: conversation.at(-1)?.message
-					}
-				</p>
+					) : (
+						<p>No messages</p>
+					)}
+				</div>
 			</div>
 			<div className='chatlist__date'>
 				{/* eslint-disable-next-line */}
