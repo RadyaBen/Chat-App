@@ -1,0 +1,1 @@
+export { truncateAfterWord } from './truncate';
