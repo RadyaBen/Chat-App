@@ -67,11 +67,6 @@ const ChatView = () => {
 	useEffect(() => {
 		if (isClicked) {
 
-			if (timeoutRef.current) {
-				// Clear the running timer and start a new one each time the user clicks
-				clearTimeout(timeoutRef.current);
-			}
-
 			timeoutRef.current = setTimeout(() => {
 				handleAddMessage(true, activeChatId);
 				audio.play();
@@ -82,6 +77,10 @@ const ChatView = () => {
 		}
 		// eslint-disable-next-line
 	}, [isClicked]);
+
+	useEffect(() => {
+		return () => clearTimeout(timeoutRef.current);
+	}, []);
 
 	const handleInputChange = (e) => {
 		setChatMessage(e.target.value);
