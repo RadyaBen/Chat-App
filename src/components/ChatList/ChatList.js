@@ -6,11 +6,12 @@ import { ChatListItems } from '../ChatListItems';
 import { SearchMessage } from '../ui/SearchMessage';
 
 import { selectedChatId } from '../../features/chat/chatSlice';
+import { selectChat } from '../../features/chat/chatSelectors';
 
 import './ChatList.scss';
 
 const ChatList = () => {
-	const { filteredUsersData, activeChatId } = useSelector((state) => state.chat);
+	const { filteredUsersData, activeChatId } = useSelector(selectChat);
 	const dispatch = useDispatch();
 
 	const [currentActiveChatId, setCurrentActiveChatId] = useState(activeChatId);
