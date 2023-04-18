@@ -1,4 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import {
+	useState,
+	useEffect,
+	useRef,
+} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,6 +13,10 @@ import { ChatItem } from '../ui/ChatItem';
 import { ChatInput } from '../ui/ChatInput';
 
 import { addMessageToChat } from '../../features/chat/chatSlice';
+import {
+	selectChat,
+	selectChatItem,
+} from '../../features/chat/chatSelectors';
 
 import avatarImage from '../../assets/images/anonymous-avatar.png';
 import messageNotification from '../../assets/sounds/message-notification.mp3';
@@ -21,15 +29,13 @@ const ChatView = () => {
 	const [isBotMessage, setIsBotMessage] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
 
+	// By default, during the first render, the first chat user is set as active 
+	const selectedChat = useSelector(selectChatItem);
+	const { usersData, activeChatId } = useSelector(selectChat);
+	const dispatch = useDispatch();
+
 	const timeoutRef = useRef(null);
 	const messagesEndRef = useRef(null);
-
-	// By default, the first chat user is set as active
-	const selectedChat = useSelector((state) => {
-		return state.chat.usersData.find((userItem) => userItem.id === state.chat.activeChatId);
-	});
-	const { usersData, activeChatId } = useSelector((state) => state.chat);
-	const dispatch = useDispatch();
 
 	const audio = new Audio(messageNotification);
 
