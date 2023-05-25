@@ -1,23 +1,23 @@
 .chatlist {
-	min-width: 150px;
-	max-width: 380px;
-	width: 40%;
-	height: 100%;
-	border-right: 1px solid lightgrey;
+    min-width: 150px;
+    max-width: 380px;
+    width: 40%;
+    height: 100%;
+    border-right: 1px solid lightgrey;
 
-	&__header {
-		padding: 15px;
+    &__header {
+        padding: 15px;
 
-		h1 {
-			font-size: 22px;
-			font-weight: 400;
-			color: #38A7CB;
-		}
-	}
+        h1 {
+            font-size: 22px;
+            font-weight: 400;
+            color: #38a7cb;
+        }
+    }
 
-	&__items {
-		height: calc(100% - 200px);
-		overflow: auto;
-		overflow-x: hidden;
-	}
+    &__items {
+        height: calc(100% - 200px);
+        overflow: auto;
+        overflow-x: hidden;
+    }
 }

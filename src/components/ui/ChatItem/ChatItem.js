@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 
-import { Avatar } from '../Avatar';
+import { Avatar } from '../../index';
 
 import './ChatItem.scss';
 
-const ChatItem = (props) => {
-
-	const { user, message, createdDateTime, image } = props;
-
+export const ChatItem = ({
+	user,
+	message,
+	createdDateTime,
+	image,
+}) => {
 	return (
 		<div
 			style={{ animationDelay: '0.8s' }}
@@ -31,5 +33,3 @@ ChatItem.propTypes = {
 	createdDateTime: PropTypes.string.isRequired,
 	image: PropTypes.string.isRequired,
 };
-
-export { ChatItem };
