@@ -1,8 +1,9 @@
 .chatlist {
-	&__search-message {
-		height: calc(50vh / 2);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+    &__search-message {
+        height: calc(50vh / 2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
+

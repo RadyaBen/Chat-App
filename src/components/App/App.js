@@ -1,13 +1,11 @@
-import { ChatBody } from '../ChatBody';
+import { ChatBody } from '../index';
 
 import './App.scss';
 
-const App = () => {
-	return (
-		<div className='main'>
-			<ChatBody />
-		</div>
-	);
+export const App = () => {
+    return (
+        <div className='main'>
+            <ChatBody />
+        </div>
+    );
 };
-
-export { App };

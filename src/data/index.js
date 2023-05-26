@@ -1,1 +1,0 @@
-export { chatUsersData } from './chatUsersData';

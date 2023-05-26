@@ -1,15 +1,12 @@
-import { ChatList } from '../ChatList';
-import { ChatView } from '../ChatView';
+import { ChatList, ChatView } from '../index';
 
 import './ChatBody.scss';
 
-const ChatBody = () => {
-	return (
-		<div className='chatbody'>
-			<ChatList />
-			<ChatView />
-		</div>
-	);
+export const ChatBody = () => {
+    return (
+        <div className='chatbody'>
+            <ChatList />
+            <ChatView />
+        </div>
+    );
 };
-
-export { ChatBody };

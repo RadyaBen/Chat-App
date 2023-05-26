@@ -1,1 +1,0 @@
-export { ChatEmptyMessage } from './ChatEmptyMessage';

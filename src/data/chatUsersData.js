@@ -1,4 +1,4 @@
-const chatUsersData = [
+export const chatUsersData = [
 	{
 		id: 1,
 		profileImage: 'https://emilcarlsson.se/assets/louislitt.png',
@@ -144,5 +144,3 @@ const chatUsersData = [
 		conversation: [],
 	},
 ];
-
-export { chatUsersData };
